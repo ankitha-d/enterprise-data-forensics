@@ -527,6 +527,7 @@ Approximately:
 ₹22.8M
 
 🛠️ Technology Stack
+
 Programming & Data Processing
 Python
 Pandas
@@ -549,7 +550,9 @@ Streamlit
 Git
 GitHub
 Streamlit Community Cloud
+
 📂 Project Structure
+
 enterprise-data-forensics/
 │
 ├── data/
@@ -605,6 +608,7 @@ enterprise-data-forensics/
 ├── app.py
 ├── requirements.txt
 └── README.md
+
 ⚙️ Installation
 
 Clone the repository:
@@ -626,6 +630,7 @@ venv\Scripts\activate
 Install dependencies:
 
 pip install -r requirements.txt
+
 ▶️ Run the Pipeline
 
 Run the scripts in sequence:
@@ -646,6 +651,7 @@ python src/prepare_powerbi_transactions.py
 Processed outputs are written to:
 
 data/processed/
+
 ▶️ Run the Streamlit Dashboard
 
 Launch the dashboard locally:
@@ -671,7 +677,9 @@ Investigate potentially anomalous transactions
 Identify recurring root-cause patterns
 Track investigation ownership and status
 Support management reporting through dashboards
+
 🧠 Skills Demonstrated
+
 Enterprise Data Analytics
 Data Cleaning & Standardization
 Data Quality Management
@@ -708,9 +716,10 @@ Automated unit and integration testing
 CI/CD
 Docker containerization
 Role-based investigation workflows
+
 👩‍💻 Author
 
-Ankitha Dasu
+Ankitha D
 
 GitHub:
 https://github.com/ankitha-d
