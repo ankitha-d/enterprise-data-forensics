@@ -1,0 +1,4 @@
+severity,exception_count,financial_exposure
+CRITICAL,18,995392.19
+HIGH,1580,18076515.83
+MEDIUM,2191,3724578.34

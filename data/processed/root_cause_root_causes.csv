@@ -1,0 +1,8 @@
+root_cause,exception_count,financial_exposure
+Potential partial payment,964,14485813.25
+Potential overpayment,715,7633156.15
+Duplicate ERP transaction detected,1000,540159.12
+Customer/entity relationship requires review,10,129801.97
+Transaction dates differ across systems,359,7555.87
+ERP transaction has no payment gateway record,494,0.0
+Payment exists without corresponding ERP transaction,247,0.0

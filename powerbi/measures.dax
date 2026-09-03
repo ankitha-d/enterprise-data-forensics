@@ -1,0 +1,264 @@
+-- ============================================================
+-- ENTERPRISE DATA FORENSICS
+-- Power BI Measures
+-- ============================================================
+
+
+-- ============================================================
+-- EXECUTIVE KPIs
+-- ============================================================
+
+Total Exceptions =
+COUNTROWS('powerbi_exceptions')
+
+
+Total Financial Exposure =
+SUM('powerbi_exceptions'[financial_impact])
+
+
+Critical Exceptions =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[severity] = "CRITICAL"
+)
+
+
+High Exceptions =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[severity] = "HIGH"
+)
+
+
+Medium Exceptions =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[severity] = "MEDIUM"
+)
+
+
+Average Exception Impact =
+AVERAGE('powerbi_exceptions'[financial_impact])
+
+
+Potential Anomalies =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[potential_anomaly] = TRUE()
+)
+
+
+High Priority Investigations =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[investigation_priority] = "HIGH"
+)
+
+
+-- ============================================================
+-- RECONCILIATION
+-- ============================================================
+
+Matched Exceptions =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[reconciliation_status] = "MATCHED"
+)
+
+
+Partial Payments =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[reconciliation_status] = "PARTIAL_PAYMENT"
+)
+
+
+Overpayments =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[reconciliation_status] = "OVERPAYMENT"
+)
+
+
+Duplicate Transactions =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[reconciliation_status] = "DUPLICATE"
+)
+
+
+Missing Payments =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[reconciliation_status] = "MISSING_PAYMENT"
+)
+
+
+Unexpected Payments =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[reconciliation_status] = "UNEXPECTED_PAYMENT"
+)
+
+
+Date Mismatches =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[reconciliation_status] = "DATE_MISMATCH"
+)
+
+
+Entity Uncertain =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[reconciliation_status] = "ENTITY_UNCERTAIN"
+)
+
+
+-- ============================================================
+-- SEVERITY
+-- ============================================================
+
+Critical Exposure =
+CALCULATE(
+    [Total Financial Exposure],
+    'powerbi_exceptions'[severity] = "CRITICAL"
+)
+
+
+High Exposure =
+CALCULATE(
+    [Total Financial Exposure],
+    'powerbi_exceptions'[severity] = "HIGH"
+)
+
+
+Medium Exposure =
+CALCULATE(
+    [Total Financial Exposure],
+    'powerbi_exceptions'[severity] = "MEDIUM"
+)
+
+
+-- ============================================================
+-- WORKFLOW
+-- ============================================================
+
+Open Exceptions =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[status] = "OPEN"
+)
+
+
+Assigned Exceptions =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[status] = "ASSIGNED"
+)
+
+
+Investigating Exceptions =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[status] = "INVESTIGATING"
+)
+
+
+Escalated Exceptions =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[status] = "ESCALATED"
+)
+
+
+Resolved Exceptions =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[status] = "RESOLVED"
+)
+
+
+Closed Exceptions =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[status] = "CLOSED"
+)
+
+
+False Positives =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[status] = "FALSE POSITIVE"
+)
+
+
+-- ============================================================
+-- SLA
+-- ============================================================
+
+Within SLA =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[sla_status] = "WITHIN_SLA"
+)
+
+
+Outside SLA =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[sla_status] <> "WITHIN_SLA"
+)
+
+
+-- ============================================================
+-- ANOMALY ANALYSIS
+-- ============================================================
+
+Isolation Forest Anomalies =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[isolation_forest_anomaly] = TRUE()
+)
+
+
+Z Score Anomalies =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[amount_z_anomaly] = TRUE()
+)
+
+
+IQR Anomalies =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[amount_iqr_anomaly] = TRUE()
+)
+
+
+Matched Statistical Anomalies =
+CALCULATE(
+    [Total Exceptions],
+    'powerbi_exceptions'[potential_anomaly] = TRUE(),
+    'powerbi_exceptions'[reconciliation_status] = "MATCHED"
+)
+
+
+-- ============================================================
+-- CONCENTRATION
+-- ============================================================
+
+Gateway Exposure =
+SUM('powerbi_exceptions'[financial_impact])
+
+
+Average Entity Match Score =
+AVERAGE('powerbi_exceptions'[entity_match_score])
+
+
+Average Date Difference =
+AVERAGE('powerbi_exceptions'[date_difference_days])
+
+
+Average Exception Age =
+AVERAGE('powerbi_exceptions'[exception_age_days])
