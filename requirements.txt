@@ -3,3 +3,4 @@ numpy
 rapidfuzz
 scikit-learn
 openpyxl
+streamlit
